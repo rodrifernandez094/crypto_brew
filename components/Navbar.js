@@ -21,7 +21,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="w-full absolute top-0 left-0 z-50 px-4 lg:px-16 py-2 flex justify-between lg:justify-start gap-8 items-center">
+    <div className="w-full absolute top-0 left-0 z-30 px-4 lg:px-16 py-2 flex justify-between lg:justify-start gap-8 items-center">
       <div className="w-16 cursor-pointer">
         <Image width={64} height={64} src="/logo.png" alt="logo" />
       </div>
