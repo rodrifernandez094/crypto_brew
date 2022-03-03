@@ -49,7 +49,6 @@ const MainInfo = ({ data, user }) => {
 
   const addFavorite = async (userId, coinId, toggle) => {
     await FirestoreService.addFavorite(userId, coinId, toggle);
-    // toast.success("added");
     toast.dark(
       <Breadcrumb
         message={toggle ? "Removed from favorites" : "Added to favorites"}
@@ -98,7 +97,7 @@ const MainInfo = ({ data, user }) => {
         </div>
         <MarketData marketData={marketData} />
       </div>
-      {/* {breadcrumb === true && } */}
+
       <ToastContainer autoClose={3000} hideProgressBar={true} />
     </div>
   );
