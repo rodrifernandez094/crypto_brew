@@ -8,6 +8,9 @@ import {
   signOut,
   updateProfile,
   sendPasswordResetEmail,
+  deleteUser,
+  reauthenticateWithCredential,
+  EmailAuthProvider,
 } from "firebase/auth";
 
 import { getApp } from "firebase/app";
@@ -74,6 +77,25 @@ class AuthService {
       const response = await sendPasswordResetEmail(this.auth, email);
 
       console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  async deleteUser(password) {
+    try {
+      const credentials = EmailAuthProvider.credential(
+        this.auth.currentUser.email,
+        password
+      );
+      const result = await reauthenticateWithCredential(
+        this.auth.currentUser,
+        credentials
+      );
+      await FirestoreService.deleteDocument(result.user.uid);
+      await deleteUser(result.user);
+      console.log("Account deleted");
+      localStorage.removeItem("favorites");
     } catch (error) {
       console.log(error);
     }
