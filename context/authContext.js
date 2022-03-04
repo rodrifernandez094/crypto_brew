@@ -34,6 +34,10 @@ export function AuthProvider(props) {
     setUser(null);
   };
 
+  const deleteUser = async (password) => {
+    await AuthService.deleteUser(password);
+  };
+
   const value = {
     user,
     error,
@@ -42,6 +46,7 @@ export function AuthProvider(props) {
     signIn,
     signOut,
     setUser,
+    deleteUser,
   };
   return <AuthContext.Provider value={value} {...props} />;
 }
