@@ -74,9 +74,7 @@ class AuthService {
 
   async resetPassword(email) {
     try {
-      const response = await sendPasswordResetEmail(this.auth, email);
-
-      console.log(response);
+      await sendPasswordResetEmail(this.auth, email);
     } catch (error) {
       console.log(error);
     }
