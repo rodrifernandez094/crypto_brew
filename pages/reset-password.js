@@ -3,20 +3,17 @@ import { useState } from "react";
 import Router from "next/router";
 import Image from "next/image";
 import AuthService from "../services/AuthService";
-import Breadcrumb from "../components/Breadcrumb";
+import Toast from "../components/Toast";
+import { ToastContainer, toast } from "react-toastify";
 
 const ResetPassword = () => {
   const [email, setEmail] = useState("");
-  const [sent, setSent] = useState(false);
-  const message = "A link has been sent to your email.";
 
   const resetPassword = async (email) => {
     await AuthService.resetPassword(email);
-    setSent(true);
-    setTimeout(() => {
-      setSent(false);
-      Router.replace("/login");
-    }, 5000);
+    toast.dark(<Toast message={"A link has been sent to your email."} />, {
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
   };
 
   return (
@@ -72,7 +69,7 @@ const ResetPassword = () => {
           </form>
         </div>
       </div>
-      {sent && <Breadcrumb message={message} />}
+      <ToastContainer autoClose={3000} hideProgressBar={true} />
     </>
   );
 };
