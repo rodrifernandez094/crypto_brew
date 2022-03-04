@@ -1,10 +1,10 @@
 import { withPublic } from "../services/protectRoutes";
 import { useState } from "react";
-import Router from "next/router";
 import Image from "next/image";
 import AuthService from "../services/AuthService";
 import Toast from "../components/Toast";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ResetPassword = () => {
   const [email, setEmail] = useState("");
