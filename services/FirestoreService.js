@@ -3,6 +3,7 @@ import {
   getDoc,
   doc,
   setDoc,
+  deleteDoc,
   arrayUnion,
   arrayRemove,
 } from "firebase/firestore";
@@ -49,10 +50,12 @@ class FirestoreService {
     if (docSnap.exists()) {
       const docData = docSnap.data();
       localStorage.setItem("favorites", JSON.stringify(docData.portfolio));
-    } else {
-      // doc.data() will be undefined in this case
-      console.log("No such document!");
     }
+  }
+
+  async deleteDocument(userId) {
+    const docRef = doc(db, "users", userId);
+    await deleteDoc(docRef);
   }
 }
 
