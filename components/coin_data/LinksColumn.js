@@ -11,7 +11,6 @@ const LinksColumn = ({ data }) => {
     source_code: {link: data?.links?.repos_url?.github[0] ?? "", name: "Github"}
   }
 
-  console.log(data);
   return (
     //prettier-ignore
     <div className="lg:w-2/4 flex lg:justify-end">
