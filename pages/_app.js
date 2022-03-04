@@ -7,18 +7,6 @@ import Layout from "../components/Layout";
 import AuthStateChanged from "../components/AuthStateChanged";
 import Spinner from "../components/Spinner";
 
-// function MyApp({ Component, pageProps }) {
-//   return (
-// <AuthProvider>
-//   <AuthStateChanged>
-//     <Layout>
-//       <Component {...pageProps} />
-//     </Layout>
-//   </AuthStateChanged>
-// </AuthProvider>
-//   );
-// }
-
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(false);
   useEffect(() => {
