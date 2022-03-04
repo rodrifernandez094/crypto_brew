@@ -1,7 +1,7 @@
+import Link from "next/link";
 import { withProtected } from "../../services/protectRoutes";
 import MainInfo from "../../components/coin_data/MainInfo";
 import LinksColumn from "../../components/coin_data/LinksColumn";
-import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
