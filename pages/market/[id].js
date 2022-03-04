@@ -23,7 +23,6 @@ export const getStaticPaths = async () => {
 };
 
 export const getStaticProps = async (context) => {
-  console.log(typeof context.params.id);
   const id = context?.params?.id;
   const res = await fetch(
     `https://api.coingecko.com/api/v3/coins/${id}?tickers=false&community_data=false&developer_data=false`
