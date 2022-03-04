@@ -1,5 +1,5 @@
 import MarketData from "./MarketData";
-import Breadcrumb from "../Breadcrumb";
+import Toast from "../Toast";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -11,6 +11,7 @@ import FirestoreService from "../../services/FirestoreService";
 
 const MainInfo = ({ data, user }) => {
   const { uid } = user;
+  const numberFormat = Intl.NumberFormat("en-US");
 
   useEffect(() => {
     const getFavorites = async () => {
@@ -28,7 +29,6 @@ const MainInfo = ({ data, user }) => {
     getFavorites();
   });
 
-  const numberFormat = Intl.NumberFormat("en-US");
   //prettier-ignore
   const marketData = {
     current_price: data?.market_data?.current_price,
@@ -50,7 +50,7 @@ const MainInfo = ({ data, user }) => {
   const addFavorite = async (userId, coinId, toggle) => {
     await FirestoreService.addFavorite(userId, coinId, toggle);
     toast.dark(
-      <Breadcrumb
+      <Toast
         message={toggle ? "Removed from favorites" : "Added to favorites"}
       />,
       { position: toast.POSITION.BOTTOM_CENTER }
