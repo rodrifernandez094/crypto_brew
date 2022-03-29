@@ -23,7 +23,7 @@ const DataRow = ({ coinData }) => {
                 />
               </div>
               <div className="text-sm font-medium ml-4 text-gray-900 flex flex-col">
-                <Link href={`market/${data?.id}`}>
+                <Link href="/market/[id]" as={`market/${data?.id}`}>
                   <a>{data?.name}</a>
                 </Link>
                 <span className=" text-gray-500 uppercase">{data?.symbol}</span>
