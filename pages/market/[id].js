@@ -5,35 +5,6 @@ import LinksColumn from "../../components/coin_data/LinksColumn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight } from "@fortawesome/free-solid-svg-icons";
 
-export const getStaticPaths = async () => {
-  const url =
-    "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1";
-  const res = await fetch(url);
-  const data = await res.json();
-  const paths = await data.map((coin) => {
-    return {
-      params: { id: coin?.id },
-    };
-  });
-
-  return {
-    paths,
-    fallback: false,
-  };
-};
-
-export const getStaticProps = async (context) => {
-  const id = context?.params?.id;
-  const res = await fetch(
-    `https://api.coingecko.com/api/v3/coins/${id}?tickers=false&community_data=false&developer_data=false`
-  );
-  const data = await res.json();
-
-  return {
-    props: { data },
-  };
-};
-
 const CoinDetail = ({ data, auth }) => {
   const { user } = auth;
 
@@ -55,3 +26,14 @@ const CoinDetail = ({ data, auth }) => {
 };
 
 export default withProtected(CoinDetail);
+
+export const getServerSideProps = async (context) => {
+  const { id } = context.query;
+  const res = await fetch(
+    `https://api.coingecko.com/api/v3/coins/${id}?tickers=false&community_data=false&developer_data=false`
+  );
+  const data = await res.json();
+  return {
+    props: { data },
+  };
+};
