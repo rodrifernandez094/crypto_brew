@@ -10,7 +10,6 @@ export default function AuthStateChanged({ children }) {
   const Router = useRouter();
 
   useEffect(() => {
-    // const unsubscribeSnapshot;
     const unsubscribeAuth = AuthService.authStateChanged((credentials) => {
       if (user) {
         Router.push("/login");
