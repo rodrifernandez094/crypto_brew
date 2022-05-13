@@ -14,19 +14,19 @@ export function AuthProvider(props) {
   const signInWithGoogle = async () => {
     const { user, error } = await AuthService.signInWithGoogle();
     setUser(user ?? null);
-    setError(error ?? "");
+    setError(error?.message ?? "");
   };
 
   const signUp = async (email, password, userName) => {
     const { user, error } = await AuthService.signUp(email, password, userName);
     setUser(user ?? null);
-    setError(error ?? "");
+    setError(error?.message ?? "");
   };
 
   const signIn = async (email, password) => {
     const { user, error } = await AuthService.signIn(email, password);
     setUser(user ?? null);
-    setError(error ?? "");
+    setError(error?.message ?? "");
   };
 
   const signOut = async () => {
