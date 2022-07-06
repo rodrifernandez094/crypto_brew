@@ -2,10 +2,10 @@ import dynamic from "next/dynamic";
 const Table = dynamic(() => import("../../components/table/Table"), {
   ssr: false,
 });
-import { withProtected } from "../../services/protectRoutes";
 
 const Market = ({ data, auth }) => {
-  const { user } = auth;
+  // const { user } = auth;
+  const user = auth?.user || undefined;
 
   return (
     <div className="container mx-auto w-full pb-12 pt-28 px-8">
@@ -17,7 +17,7 @@ const Market = ({ data, auth }) => {
   );
 };
 
-export default withProtected(Market);
+export default Market;
 
 export const getServerSideProps = async () => {
   const url =
