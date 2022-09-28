@@ -6,11 +6,6 @@ import { AuthProvider } from "../context/authContext";
 import Layout from "../components/Layout";
 import AuthStateChanged from "../components/AuthStateChanged";
 import Spinner from "../components/Spinner";
-import { disableReactDevTools } from "@fvilers/disable-react-devtools";
-
-if (process.env.NODE_ENV === "production") {
-  disableReactDevTools();
-}
 
 function MyApp({ Component, pageProps }) {
   const [loading, setLoading] = useState(false);
