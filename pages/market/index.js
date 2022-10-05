@@ -4,7 +4,6 @@ const Table = dynamic(() => import("../../components/table/Table"), {
 });
 
 const Market = ({ data, auth }) => {
-  // const { user } = auth;
   const user = auth?.user || undefined;
 
   return (
