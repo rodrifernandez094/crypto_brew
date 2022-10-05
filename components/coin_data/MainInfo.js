@@ -12,6 +12,7 @@ import FirestoreService from "../../services/FirestoreService";
 const MainInfo = ({ data, user }) => {
   const { uid } = user;
   const numberFormat = Intl.NumberFormat("en-US");
+  const [toggle, setToggle] = useState(false);
 
   useEffect(() => {
     const getFavorites = async () => {
@@ -45,7 +46,6 @@ const MainInfo = ({ data, user }) => {
   };
 
   const priceChange = Number(marketData?.price_change_24h).toFixed(2);
-  const [toggle, setToggle] = useState(false);
 
   const addFavorite = async (userId, coinId, toggle) => {
     await FirestoreService.addFavorite(userId, coinId, toggle);
