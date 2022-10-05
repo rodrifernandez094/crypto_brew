@@ -10,36 +10,43 @@ const Profile = ({ auth }) => {
 
   useEffect(() => {
     const coinId = JSON.parse(localStorage.getItem("favorites"));
+    let controller = new AbortController();
 
-    const fetchCoinList = async () => {
-      if (coinId) {
-        coinId.forEach((coin) => {
-          fetch(
-            `https://api.coingecko.com/api/v3/coins/${coin.coinId}?tickers=false&community_data=false&developer_data=false`
-          )
-            .then((res) => res.json())
-            .then((data) =>
-              setPortfolio((old) => {
-                return [
-                  ...old,
-                  {
-                    id: data?.id,
-                    name: data?.name,
-                    market_cap: data?.market_data?.market_cap?.usd,
-                    market_cap_rank: data?.market_cap_rank,
-                    current_price: data?.market_data.current_price.usd,
-                    high_24h: data?.market_data.high_24h.usd,
-                    low_24h: data?.market_data.low_24h.usd,
-                    image: data?.image.small,
-                  },
-                ];
-              })
-            )
-            .catch((err) => console.log(err));
-        });
-      }
+    if (coinId) {
+      coinId.forEach(async (coin) => {
+        try {
+          const res = await fetch(
+            `https://api.coingecko.com/api/v3/coins/${coin.coinId}?tickers=false&community_data=false&developer_data=false`,
+            {
+              signal: controller.signal,
+            }
+          );
+          const data = await res.json();
+
+          setPortfolio((old) => {
+            return [
+              ...old,
+              {
+                id: data?.id,
+                name: data?.name,
+                market_cap: data?.market_data?.market_cap?.usd,
+                market_cap_rank: data?.market_cap_rank,
+                current_price: data?.market_data?.current_price.usd,
+                high_24h: data?.market_data?.high_24h.usd,
+                low_24h: data?.market_data?.low_24h.usd,
+                image: data?.image?.small,
+              },
+            ];
+          });
+          controller = null;
+        } catch (error) {
+          console.error(error);
+        }
+      });
+    }
+    return () => {
+      controller?.abort();
     };
-    fetchCoinList();
   }, []);
 
   return (
