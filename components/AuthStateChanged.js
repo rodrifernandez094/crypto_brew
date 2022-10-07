@@ -16,6 +16,7 @@ export default function AuthStateChanged({ children }) {
     return () => {
       unsubscribe();
     };
+    // eslint-disable-next-line no-use-before-define
   }, []);
 
   if (loading) {
