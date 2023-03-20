@@ -1,8 +1,8 @@
 import DataRow from "./DataRow";
 
-const Table = ({ coinData }) => {
+const Table = ({ coinData, query }) => {
   return (
-    <div className="flex flex-col w-full py-8">
+    <div className="flex flex-col w-full py-2">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
           <div className="border-b border-gray-200 sm:rounded-lg">
@@ -41,7 +41,7 @@ const Table = ({ coinData }) => {
                   </th>
                 </tr>
               </thead>
-              <DataRow coinData={coinData} />
+              <DataRow coinData={coinData} query={query} />
             </table>
           </div>
         </div>
