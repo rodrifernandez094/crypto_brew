@@ -6,6 +6,7 @@ import Modal from "../components/Modal";
 const Profile = ({ auth }) => {
   const { user } = auth;
   const [portfolio, setPortfolio] = useState([]);
+  const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -79,7 +80,18 @@ const Profile = ({ auth }) => {
                 <div className="max-w-7xl mx-auto">
                   <h2 className="text-lg font-bold">Portfolio</h2>
                 </div>
-                {portfolio && <Table coinData={portfolio} />}
+                <form>
+                  <input
+                    type="text"
+                    name="search"
+                    placeholder="Search"
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    id=""
+                    className="w-full mt-2 border-0 border-b border-b-zinc-600 text-sm"
+                  />
+                </form>
+                {portfolio && <Table coinData={portfolio} query={query} />}
               </div>
             </div>
           </main>
