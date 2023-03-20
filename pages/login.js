@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 
 const Login = ({ auth }) => {
-  const { signInWithGoogle, signIn, error } = auth;
+  const { signIn, error } = auth;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -87,13 +87,7 @@ const Login = ({ auth }) => {
             </div>
           </form>
           <div>
-            <button
-              onClick={signInWithGoogle}
-              className="group relative w-full flex justify-center py-2 px-4  border border-transparent text-sm font-medium rounded-md text-white bg-yellow-500 hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
-            >
-              Sign in with google
-            </button>
-            <p className="text-sm mt-2">
+            <p className="text-sm mt-2 flex gap-2">
               ¿Are you new?
               <Link href="/register">
                 <a className="text-yellow-600 hover:text-yellow-500">

@@ -27,21 +27,6 @@ class AuthService {
     });
   }
 
-  async signInWithGoogle() {
-    const provider = new GoogleAuthProvider();
-    try {
-      const userCredential = await signInWithPopup(this.auth, provider);
-      await FirestoreService.saveUser(userCredential.user.uid, userCredential);
-      return {
-        user: userCredential?.user,
-      };
-    } catch (error) {
-      return {
-        error,
-      };
-    }
-  }
-
   async signUp(email, password, userName) {
     try {
       const userCredential = await createUserWithEmailAndPassword(
