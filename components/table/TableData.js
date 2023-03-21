@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
-const DataRow = ({ coinData, query }) => {
+const TableData = ({ coinData, query }) => {
   const numberFormat = Intl.NumberFormat("en-US");
 
   return (
@@ -62,4 +62,4 @@ const DataRow = ({ coinData, query }) => {
   );
 };
 
-export default DataRow;
+export default TableData;

@@ -1,4 +1,4 @@
-import DataRow from "./DataRow";
+import TableData from "./TableData";
 
 const Table = ({ coinData, query }) => {
   return (
@@ -41,7 +41,7 @@ const Table = ({ coinData, query }) => {
                   </th>
                 </tr>
               </thead>
-              <DataRow coinData={coinData} query={query} />
+              <TableData coinData={coinData} query={query} />
             </table>
           </div>
         </div>
